@@ -1,0 +1,33 @@
+name: git-hub-actions-test
+on:
+  workflow_dispatch:
+jobs:
+  Checkout_Code:
+    name: Checkout Code
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+      with:
+        repository: Anushagurrala/git-migration
+  Executing_shell_commands:
+    name: Executing shell commands
+    runs-on: ubuntu-latest
+    needs: Checkout_Code
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: echo message
+      run: echo Executing shell commands..
+  Deploy_Nginx_Container:
+    name: Deploy Nginx Container
+    runs-on: ubuntu-latest
+    needs: Executing_shell_commands
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4.1.0
+    - name: sh
+      shell: bash
+      run: sudo docker run -it --rm -d -p 80:80 --name web nginx
